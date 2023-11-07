@@ -4,42 +4,6 @@ const { ObjectId } = require('mongoose').Types;
 const mongoose = require('mongoose');
 
 
-// async function Student(params) {
-//     try {
-//         const { studentName, year, courses } = params;
-//         const courseIds = courses.map((courseId) => mongoose.Types.ObjectId(courseId));
-//         const validCourseIds = await validateCourseIds(courseIds);
-//         if (!validCourseIds) {
-//             return 'Invalid course IDs';
-//         }
-//         const student = new StudentModel({
-//             studentName,
-//             year,
-//             courses: validCourseIds,
-//         });
-//         const createdStudent = await student.save();
-//         return createdStudent;
-//     } catch (error) {
-//         console.error(error);
-//         return 'Student Not Added';
-//     }
-// }
-
-// async function validateCourseIds(courseIds) {
-//     // Check if all course IDs exist in the Course collection
-//     const validCourseIds = await CourseModel.find({
-//         _id: { $in: courseIds },
-//     });
-
-//     // Ensure all course IDs were found in the Course collection
-//     if (validCourseIds.length !== courseIds.length) {
-//         return null; // Invalid course IDs
-//     }
-
-//     // Return an array of valid course IDs
-//     return validCourseIds.map((course) => course._id);
-// }
-
 
 
 async function Student(params) {
@@ -97,4 +61,24 @@ async function getStudent(params) {
     }
 }
 
-module.exports = { Student, getStudent };
+async function getStudentdetails(params) {
+    let { name } = params;
+    try {
+        IdExist = await StudentModel.find({
+            'studentName'
+                : name
+        });
+        if (IdExist > 0) {
+            return IdExist;
+        }
+        else {
+            return "Not Found"
+        }
+    }
+    catch (err) {
+        console.log(err);
+        return "error";
+    }
+}
+
+module.exports = { Student, getStudent, getStudentdetails };
