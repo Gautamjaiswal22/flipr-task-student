@@ -3,9 +3,6 @@ const CourseModel = require("../model/course.model");
 const { ObjectId } = require('mongoose').Types;
 const mongoose = require('mongoose');
 
-
-
-
 async function Student(params) {
 
     let { studentName, year, courses } = params;
@@ -41,7 +38,7 @@ async function Student(params) {
     }
 }
 
-async function getStudent(params) {
+async function getcourseStudent(params) {
     let { course } = params;
     try {
         IdExist = await StudentModel.find({
@@ -61,7 +58,9 @@ async function getStudent(params) {
     }
 }
 
-async function getStudentdetails(params) {
+
+
+async function getStudentcoursedetails(params) {
     let { name } = params;
     try {
         IdExist = await StudentModel.find({
@@ -81,4 +80,4 @@ async function getStudentdetails(params) {
     }
 }
 
-module.exports = { Student, getStudent, getStudentdetails };
+module.exports = { Student, getcourseStudent, getStudentcoursedetails };

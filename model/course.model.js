@@ -13,5 +13,5 @@ const courseschema = new Schema({
     type: String,
 });
 
-const CourseModel = db.model("Student", courseschema);
+const CourseModel = db.model("course", courseschema);
 module.exports = CourseModel;

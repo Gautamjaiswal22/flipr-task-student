@@ -6,15 +6,15 @@ async function course(params) {
     let data = params;
     try {
 
-        const user = new CourseModel({
+        const user = new CourseModel(
             data
-        });
+        );
         const createduser = await user.save();
         return createduser;
     }
     catch (err) {
         console.log(err);
-        return "Student Not Added";
+        return "Course Not Added";
     }
 }
 module.exports = { course };
